@@ -41,13 +41,23 @@ def main():
                     # different end point/security
                     if a_link in repeated:
                         # http links at the end
-                        if un_secure in a_protocol:
-                            temp_list.append(repeated)
-                            temp_list.append(actual)
+                        if secure in actual:
+                            if actual not in temp_list:
+                                temp_list.append(actual)
+                            if repeated not in temp_list:
+                                temp_list.append(repeated)
                         else:
-                            temp_list.append(actual)
-                            temp_list.append(repeated)
+                            if repeated not in temp_list:
+                                temp_list.append(repeated)
+                            if actual not in temp_list:   
+                                temp_list.append(actual)
         
+        # one iteration with no results
+        # means a unique bookmarks
+        # can be directly saved
+        if not temp_list:
+            temp_list.append(actual)
+
         # update visited bookmarks 
         # after each iteration
         for temp in temp_list:
