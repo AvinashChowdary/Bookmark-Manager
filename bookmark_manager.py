@@ -13,10 +13,10 @@ def main():
 
     print(firefox_set)
 
-    safari_set.union(chrome_set)
-    safari_set.union(firefox_set)
+    temp_set = safari_set.union(chrome_set)
+    total_set = temp_set.union(firefox_set)
 
-    print(safari_set)
+    print(total_set)
 
 if __name__ == '__main__':
     main()
