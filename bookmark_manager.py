@@ -80,6 +80,12 @@ def main():
                 
     print(result_bkmks)
 
+def getRedirectUrl(link):
+    res = requests.get(link, allow_redirects=False)
+    if(res.status_code = 302):
+        return res.headers['Location']
+        
+
 def writeToTempList(small, large, temp_list):
     if small not in temp_list:
         temp_list.append(small)
