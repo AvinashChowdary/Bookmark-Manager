@@ -17,6 +17,11 @@ def main():
     total_bkmks = list(total_set)
     total_bkmks.sort(key = lambda s: len(s))
 
+    for bkmk in total_bkmks:
+        if un_secure in bkmk:
+            total_bkmks.remove(bkmk)
+            total_bkmks.append(bkmk)
+
     for actual in total_bkmks:
 
         # bookmark has already been compared with others
@@ -32,25 +37,26 @@ def main():
                 if repeated in visited_bkmks:
                     pass
                 else:
-                    # comparin with itself
-                    # do nothing
-                    if len(actual) == len(repeated):
-                        pass
-                    # http links at the end
-                    elif un_secure in actual:
-                        writeToTempList(actual, repeated, temp_list)
-                    else:
-                        writeToTempList(repeated, actual, temp_list)
                     # similar bookmark
                     # similar web address
                     # different end point/security
                     if a_link in repeated:
-                        # http links at the end
-                        if secure in actual:
-                            writeToTempList(repeated, actual, temp_list)
-                        # smaller link at the front
+                        # comparin with itself
+                        # do nothing
+                        if len(actual) == len(repeated):
+                            if actual == repeated:
+                                pass
+                            elif secure in actual:
+                                writeToTempList(actual, repeated, temp_list)
+                            else:
+                                writeToTempList(repeated, actual, temp_list)
                         else:
-                            writeToTempList(actual, repeated, temp_list)
+                            # http links at the end
+                            if secure in actual:
+                                writeToTempList(actual, repeated, temp_list)
+                            # smaller link at the front
+                            else:
+                                writeToTempList(repeated, actual, temp_list)
 
         # update visited bookmarks 
         # after each iteration
@@ -65,7 +71,7 @@ def main():
         
         # temp list empty
         # donot add empty to final result
-        if not temp_list:
+        if temp_list in result_bkmks:
             pass
         else:
             # processed bookmarks
