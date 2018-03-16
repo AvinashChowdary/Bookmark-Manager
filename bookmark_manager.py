@@ -30,7 +30,10 @@ def main():
                     temp_list.append(actual)
                     temp_list.append(repeated)
         
-        result_bkmks.append(temp_list)
+        if not temp_list:
+            pass
+        else:
+            result_bkmks.append(temp_list)
                 
     print(result_bkmks)
 
