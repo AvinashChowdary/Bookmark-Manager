@@ -34,34 +34,34 @@ def main():
                 else:
                     # comparin with itself
                     # do nothing
-                    if actual == repeated:
-                        continue
+                    if len(actual) == len(repeated):
+                        pass
+                    # http links at the end
+                    elif un_secure in actual:
+                        writeToTempList(actual, repeated, temp_list)
+                    else:
+                        writeToTempList(repeated, actual, temp_list)
                     # similar bookmark
                     # similar web address
                     # different end point/security
                     if a_link in repeated:
                         # http links at the end
                         if secure in actual:
-                            if actual not in temp_list:
-                                temp_list.append(actual)
-                            if repeated not in temp_list:
-                                temp_list.append(repeated)
+                            writeToTempList(repeated, actual, temp_list)
+                        # smaller link at the front
                         else:
-                            if repeated not in temp_list:
-                                temp_list.append(repeated)
-                            if actual not in temp_list:   
-                                temp_list.append(actual)
-        
-        # one iteration with no results
-        # means a unique bookmarks
-        # can be directly saved
-        if not temp_list:
-            temp_list.append(actual)
+                            writeToTempList(actual, repeated, temp_list)
 
         # update visited bookmarks 
         # after each iteration
         for temp in temp_list:
             visited_bkmks.append(temp)
+
+        # one iteration with no results
+        # means a unique bookmarks
+        # can be directly saved
+        if not temp_list:
+            temp_list.append(actual)
         
         # temp list empty
         # donot add empty to final result
@@ -74,6 +74,11 @@ def main():
                 
     print(result_bkmks)
 
+def writeToTempList(small, large, temp_list):
+    if small not in temp_list:
+        temp_list.append(small)
+    if large not in temp_list:
+        temp_list.append(large)
 
 def separate_protocol_link(bkmk):
     # splitting to get
