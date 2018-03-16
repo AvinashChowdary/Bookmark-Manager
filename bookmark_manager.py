@@ -1,6 +1,8 @@
 
 def main():
 
+    secure = "https://"
+    un_secure = "http://"
     result_bkmks = []
     
     safari_set = set(line.strip() for line in open('safari.txt'))
@@ -14,18 +16,21 @@ def main():
     total_bkmks.sort(key = lambda s: len(s))
 
     for actual in total_bkmks:
-        
+        temp_list = []
         a_protocol, a_link = separate_protocol_link(actual)
 
         for repeated in total_bkmks:
-
+            if actual == repeated:
+                continue
             if a_link in repeated:
-                if "http://" in a_protocol:
-                    result_bkmks.append(repeated)
-                    result_bkmks.append(actual)
+                if un_secure in a_protocol:
+                    temp_list.append(repeated)
+                    temp_list.append(actual)
                 else:
-                    result_bkmks.append(actual)
-                    result_bkmks.append(repeated)
+                    temp_list.append(actual)
+                    temp_list.append(repeated)
+        
+        result_bkmks.append(temp_list)
                 
     print(result_bkmks)
 
