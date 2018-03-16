@@ -86,13 +86,14 @@ def main():
             # final result
             result_bkmks.append(temp_list)
                 
-    print(result_bkmks)
+    for lists in result_bkmks:
+        print(lists)
 
 def getRedirectUrl(link):
     try:
         res = requests.get(link, allow_redirects=False)
         if(res.status_code == 302):
-            print("Link: " + link + " red: "+ res.headers['Location'])
+            # print("Link: " + link + " red: "+ res.headers['Location'])
             return res.headers['Location']
     except:
         return ""
