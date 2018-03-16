@@ -90,7 +90,7 @@ def main():
 def getRedirectUrl(link):
     try:
         res = requests.get(link, allow_redirects=False)
-        if(res.status_code = 302):
+        if(res.status_code == 302):
             return res.headers['Location']
     except:
         return ""
