@@ -1,3 +1,4 @@
+import requests
 
 def main():
 
@@ -42,7 +43,7 @@ def main():
                     if  red_url == repeated:
                         # save working url first
                         # old url next
-                        writeToTempList(red_url, repeated, temp_list)
+                        writeToTempList(red_url, actual, temp_list)
 
                     # similar bookmark
                     # similar web address
@@ -91,6 +92,7 @@ def getRedirectUrl(link):
     try:
         res = requests.get(link, allow_redirects=False)
         if(res.status_code == 302):
+            print("Link: " + link + " red: "+ res.headers['Location'])
             return res.headers['Location']
     except:
         return ""
