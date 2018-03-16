@@ -13,7 +13,10 @@ def main():
 
     print(firefox_set)
 
+    safari_set.union(chrome_set)
+    safari_set.union(firefox_set)
 
+    print(safari_set)
 
 if __name__ == '__main__':
     main()
