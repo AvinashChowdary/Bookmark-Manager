@@ -37,6 +37,13 @@ def main():
                 if repeated in visited_bkmks:
                     pass
                 else:
+                    red_url = getRedirectUrl(actual)
+                    # redirected url is present in the list
+                    if  red_url == repeated:
+                        # save working url first
+                        # old url next
+                        writeToTempList(red_url, repeated, temp_list)
+
                     # similar bookmark
                     # similar web address
                     # different end point/security
