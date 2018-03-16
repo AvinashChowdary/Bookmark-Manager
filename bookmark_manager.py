@@ -106,6 +106,9 @@ def separate_protocol_link(bkmk):
     # splitting to get
     # protocol and web address
     protocol, url = bkmk.split("://")
+    # to match websites alone
+    # cluster more bookmarks into one
+    url = url.split("/")[0]
     return protocol, url
 
 if __name__ == '__main__':
